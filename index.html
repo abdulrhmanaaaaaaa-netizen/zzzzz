@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#06030c">
+<meta name="color-scheme" content="dark">
+<title>RemoveBG · Neon Studio</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Orbitron:wght@500;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- =============== LOADER =============== -->
+<div id="loader">
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="orb orb-c"></div>
+  <canvas id="fx"></canvas>
+
+  <div class="loader-core">
+    <div class="ring r1"></div>
+    <div class="ring r2"></div>
+    <div class="ring r3"></div>
+    <div class="core-logo">
+      <img src="https://up6.cc/2026/09/178886608408951.jpg" alt="">
+      <span class="core-shine"></span>
+    </div>
+  </div>
+
+  <div class="loader-info">
+    <div class="brand-reveal">
+      <span class="line"></span>
+      REMOVE<span class="grad">BG</span>
+      <span class="line"></span>
+    </div>
+    <div class="sub-reveal">NEON STUDIO · v3.0</div>
+    <div class="status" id="ldStatus">تهيئة النظام...</div>
+    <div class="track"><div class="fill" id="ldFill"></div></div>
+    <div class="pct" id="ldPct">0%</div>
+  </div>
+</div>
+
+<!-- =============== AUTH =============== -->
+<section id="authScreen" class="auth hidden">
+  <div class="auth-wrap">
+
+    <!-- Visual -->
+    <aside class="auth-visual">
+      <div class="v-glow-1"></div>
+      <div class="v-glow-2"></div>
+      <div class="v-grid"></div>
+
+      <div class="v-content">
+        <div class="v-badge"><i></i> AI POWERED · NEON ENGINE</div>
+        <h2 class="v-title">
+          عالمك الإبداعي <br>
+          <span class="grad-text">يبدأ من هنا</span>
+        </h2>
+        <p class="v-desc">
+          استوديو احترافي لإزالة خلفيات الصور بدقة عالية، حفظ تلقائي، إدارة كاملة،
+          وتجربة مستخدم بمستوى المنتجات العالمية.
+        </p>
+        <div class="v-stats">
+          <div><strong>99.9%</strong><span>دقة</span></div>
+          <div><strong>&lt; 3s</strong><span>معالجة</span></div>
+          <div><strong>PNG</strong><span>شفاف</span></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Card -->
+    <div class="auth-card">
+      <div class="card-shine"></div>
+
+      <div class="logo-wrap">
+        <img src="https://up6.cc/2026/09/178886608408951.jpg" alt="">
+        <span class="logo-ring"></span>
+      </div>
+
+      <h1 class="auth-title">Remove<span class="grad-text">BG</span></h1>
+      <p class="auth-sub">سجّل دخولك أو أنشئ حسابًا جديدًا</p>
+
+      <!-- OAuth -->
+      <div class="oauth">
+        <button class="oauth-btn" data-p="google" type="button">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#EA4335" d="M12 10.2v3.9h5.5c-.24 1.4-1.7 4.1-5.5 4.1-3.3 0-6-2.7-6-6.1s2.7-6.1 6-6.1c1.9 0 3.1.8 3.8 1.5l2.6-2.5C16.7 3.3 14.6 2.4 12 2.4 6.7 2.4 2.4 6.7 2.4 12s4.3 9.6 9.6 9.6c5.5 0 9.2-3.9 9.2-9.4 0-.6-.06-1.1-.15-1.6H12z"/></svg>
+          Google
+        </button>
+        <button class="oauth-btn" data-p="github" type="button">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 .5C5.6.5.5 5.6.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.25.8-.55v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.4-1.3-1.7-1.3-1.7-1.1-.75.08-.74.08-.74 1.2.08 1.8 1.2 1.8 1.2 1.05 1.8 2.8 1.3 3.5 1 .1-.78.4-1.3.75-1.6-2.55-.3-5.25-1.3-5.25-5.7 0-1.25.45-2.3 1.2-3.1-.12-.3-.5-1.5.1-3.1 0 0 .95-.3 3.1 1.2a10.8 10.8 0 0 1 5.6 0c2.1-1.5 3.1-1.2 3.1-1.2.6 1.6.2 2.8.1 3.1.75.8 1.2 1.85 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.36.8 1.05.8 2.1v3.1c0 .3.2.66.8.55C20.2 21.4 23.5 17 23.5 12 23.5 5.6 18.4.5 12 .5z"/></svg>
+          GitHub
+        </button>
+        <button class="oauth-btn" data-p="discord" type="button">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="#5865F2"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.25.5a18 18 0 0 1 4.4 1.4 15.6 15.6 0 0 0-15.1 0A18 18 0 0 1 8.9 3.5L8.6 3a19.8 19.8 0 0 0-4.9 1.4C.6 9.3-.4 14 0 18.6a20 20 0 0 0 6 3l.8-1.4c-.9-.3-1.7-.7-2.4-1.2l.6-.45a13.5 13.5 0 0 0 12 0l.6.45c-.8.5-1.6.9-2.4 1.2l.8 1.4a20 20 0 0 0 6-3c.5-5.4-.8-10-3.3-14.2zM8.5 15.5c-1 0-1.7-.9-1.7-2s.8-2 1.7-2 1.8.9 1.7 2c0 1.1-.8 2-1.7 2zm7 0c-1 0-1.7-.9-1.7-2s.8-2 1.7-2 1.7.9 1.7 2-.8 2-1.7 2z"/></svg>
+          Discord
+        </button>
+      </div>
+
+      <div class="divider"><span>أو بالبريد</span></div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button id="tabLogin" class="tab active" type="button">دخول</button>
+        <button id="tabRegister" class="tab" type="button">حساب جديد</button>
+        <span class="tab-indicator" id="tabInd"></span>
+      </div>
+
+      <!-- Form -->
+      <form id="authForm" autocomplete="on" novalidate>
+
+        <!-- Username (register only) -->
+        <div class="field hidden" id="fUsername">
+          <label>اسم المستخدم</label>
+          <div class="input-wrap">
+            <input id="username" type="text" maxlength="20" placeholder="username_123" autocomplete="username">
+            <span class="hint-icon" id="uHint"></span>
+          </div>
+          <span class="err" id="errUsername"></span>
+        </div>
+
+        <!-- Email -->
+        <div class="field" id="fEmail">
+          <label>البريد الإلكتروني</label>
+          <div class="input-wrap">
+            <input id="email" type="email" placeholder="you@example.com" autocomplete="email" spellcheck="false" required>
+            <span class="hint-icon" id="eHint"></span>
+          </div>
+          <span class="err" id="errEmail"></span>
+        </div>
+
+        <!-- Password -->
+        <div class="field">
+          <label>كلمة المرور</label>
+          <div class="input-wrap">
+            <input id="password" type="password" minlength="6" placeholder="••••••••" autocomplete="current-password" required>
+            <button class="eye" id="eyePass" type="button" aria-label="toggle">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1.5 12s4-7 10.5-7 10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <div class="strength hidden" id="strength">
+            <div class="bars"><i></i><i></i><i></i><i></i></div>
+            <span id="strengthTxt">ضعيفة</span>
+          </div>
+          <span class="err" id="errPassword"></span>
+        </div>
+
+        <!-- Confirm -->
+        <div class="field hidden" id="fConfirm">
+          <label>تأكيد كلمة المرور</label>
+          <div class="input-wrap">
+            <input id="confirm" type="password" minlength="6" placeholder="••••••••" autocomplete="new-password">
+            <button class="eye" id="eyeConfirm" type="button" aria-label="toggle">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1.5 12s4-7 10.5-7 10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <span class="err" id="errConfirm"></span>
+        </div>
+
+        <!-- Password requirements (register) -->
+        <ul class="reqs hidden" id="reqs">
+          <li data-r="len"><i></i> 8 أحرف على الأقل</li>
+          <li data-r="upper"><i></i> حرف كبير</li>
+          <li data-r="lower"><i></i> حرف صغير</li>
+          <li data-r="num"><i></i> رقم</li>
+          <li data-r="sym"><i></i> رمز خاص</li>
+        </ul>
+
+        <!-- Remember / Forgot -->
+        <div class="row-between">
+          <label class="checkbox">
+            <input type="checkbox" id="remember" checked>
+            <span class="box"></span>
+            <span>تذكرني</span>
+          </label>
+          <button type="button" class="link" id="forgotBtn">نسيت كلمة المرور؟</button>
+        </div>
+
+        <!-- CAPTCHA -->
+        <div class="captcha" id="captcha" data-state="idle">
+          <div class="captcha-track">
+            <span class="captcha-fill" id="captchaFill"></span>
+            <span class="captcha-text" id="captchaText">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+              اسحب للتحقق
+            </span>
+            <button class="captcha-handle" id="captchaHandle" type="button" aria-label="slide to verify">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Terms (register) -->
+        <label class="checkbox full hidden" id="fTerms">
+          <input type="checkbox" id="terms">
+          <span class="box"></span>
+          <span>أوافق على <a href="#" class="link">الشروط</a> و <a href="#" class="link">الخصوصية</a></span>
+        </label>
+
+        <!-- Submit -->
+        <button type="submit" id="submitBtn" class="btn-primary" disabled>
+          <span class="btn-text">تسجيل الدخول</span>
+          <span class="btn-glow"></span>
+        </button>
+
+      </form>
+
+      <div id="authMsg" class="msg"></div>
+
+      <div class="trust">
+        <span>🔒</span> اتصال مُشفّر · محمي بواسطة Supabase Auth
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== APP =============== -->
+<main id="appScreen" class="app hidden">
+  <div class="container">
+
+    <!-- Header -->
+    <header class="hdr glass">
+      <div class="brand">
+        <div class="brand-logo"><img src="https://up6.cc/2026/09/178886608408951.jpg" alt=""></div>
+        <div class="brand-txt">
+          <strong>RemoveBG</strong>
+          <span>NEON STUDIO</span>
+        </div>
+      </div>
+      <div class="hdr-tools">
+        <button id="adminMini" class="dev-btn hidden" type="button">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 4v5c0 4.4-3 7.7-7 9-4-1.3-7-4.6-7-9V7l7-4z"/></svg>
+          <span>المطوّر</span>
+        </button>
+        <div id="planPill" class="pill"><span class="dot"></span><span id="planTxt">Free</span></div>
+      </div>
+    </header>
+
+    <!-- Nav -->
+    <nav class="nav glass">
+      <button class="nav-btn active" data-view="studio" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 9V6a2 2 0 0 1 2-2h3M15 4h3a2 2 0 0 1 2 2v3M20 15v3a2 2 0 0 1-2 2h-3M9 20H6a2 2 0 0 1-2-2v-3"/><circle cx="12" cy="12" r="3"/></svg>
+        <span>الاستوديو</span>
+      </button>
+      <button class="nav-btn" data-view="history" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5M12 7v5l4 2"/></svg>
+        <span>السجل</span>
+      </button>
+      <button class="nav-btn" data-view="profile" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="7" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+        <span>حسابي</span>
+      </button>
+      <button id="adminNav" class="nav-btn hidden" data-view="admin" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 4v5c0 4.4-3 7.7-7 9-4-1.3-7-4.6-7-9V7l7-4z"/><path d="M9 12l2 2 4-4"/></svg>
+        <span>المطوّر</span>
+      </button>
+    </nav>
+
+    <!-- STUDIO -->
+    <section id="studioView" class="view">
+      <div class="hero glass">
+        <div class="hero-glow"></div>
+        <div class="hero-inner">
+          <div class="hero-badge"><i></i> NEON IMAGE ENGINE · ONLINE</div>
+          <h1>استوديو <span class="grad-text">إزالة الخلفية</span></h1>
+          <p>معالجة فورية بدقة عالية · نتائج شفافة PNG · حفظ تلقائي في سجلك.</p>
+          <div class="hero-chips">
+            <span>✦ PNG شفاف</span><span>✦ ≤ 3 ثواني</span><span>✦ AI Model v2</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="workspace glass">
+        <div class="ws-head">
+          <div class="ws-title"><i></i> مساحة المعالجة</div>
+          <div class="ws-status">● LIVE</div>
+        </div>
+
+        <div id="uploadPanel" class="upload-area">
+          <div class="upload-inner">
+            <div class="upload-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+            </div>
+            <h3>اسحب صورة هنا أو اختر من جهازك</h3>
+            <p>PNG · JPG · WEBP — حتى 20 MB</p>
+            <button id="chooseBtn" class="btn-primary small" type="button"><span class="btn-text">اختيار صورة</span></button>
+          </div>
+        </div>
+        <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+
+        <div id="previewArea" class="preview hidden">
+          <div class="preview-grid">
+            <div class="pv-card">
+              <div class="pv-head"><strong>الأصلية</strong><span>ORIGINAL</span></div>
+              <div class="pv-img"><img id="previewOriginal" alt=""></div>
+            </div>
+            <div class="pv-card">
+              <div class="pv-head"><strong>النتيجة</strong><span>TRANSPARENT</span></div>
+              <div class="pv-img checker"><img id="previewResult" class="hidden" alt=""></div>
+            </div>
+          </div>
+          <div class="pv-actions">
+            <button id="removeBtn" class="btn-primary small" type="button"><span class="btn-text">✂️ إزالة الخلفية</span></button>
+            <button id="changeBtn" class="btn-ghost" type="button">تغيير</button>
+            <button id="downloadBtn" class="btn-success hidden" type="button">⬇ تحميل</button>
+          </div>
+          <div id="processing" class="processing hidden">
+            <div class="proc-ring"><span></span></div>
+            <strong>جاري المعالجة...</strong>
+            <small>يتم تحليل الصورة وإزالة الخلفية</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HISTORY -->
+    <section id="historyView" class="view hidden">
+      <div class="sec-head glass">
+        <div class="sec-title">سجل <span class="grad-text">العمليات</span></div>
+        <div class="sec-chips">
+          <div class="chip">الكل <strong id="statTotal">0</strong></div>
+          <div class="chip">اليوم <strong id="statToday">0</strong></div>
+        </div>
+      </div>
+      <div class="toolbar">
+        <span>جميع نتائجك المحفوظة</span>
+        <button id="historyRefresh" type="button">↻ تحديث</button>
+      </div>
+      <div id="historyContent"></div>
+    </section>
+
+    <!-- PROFILE -->
+    <section id="profileView" class="view hidden">
+      <div class="profile-grid">
+        <div class="profile-card glass">
+          <div id="avatar" class="avatar">?</div>
+          <div id="pUsername" class="p-name">—</div>
+          <div id="pEmail" class="p-email">—</div>
+          <div id="pRole" class="p-role">● مستخدم</div>
+          <span id="pJoined" class="p-joined"></span>
+        </div>
+        <div class="panel glass">
+          <div class="sec-title">مركز <span class="grad-text">الحساب</span></div>
+          <div class="stats-3">
+            <div class="st"><strong id="statOps">0</strong><span>إجمالي</span></div>
+            <div class="st"><strong id="statOpsToday">0</strong><span>اليوم</span></div>
+            <div class="st"><strong id="statRemain">5</strong><span>المتبقي</span></div>
+          </div>
+          <div class="info-2">
+            <div class="ib"><span>الخطة</span><strong id="pPlan">Free</strong></div>
+            <div class="ib"><span>الحالة</span><strong id="pStatus">نشط</strong></div>
+          </div>
+          <div class="row-actions">
+            <button id="refreshProfile" class="btn-ghost" type="button">↻ تحديث</button>
+            <button id="logoutBtn" class="btn-danger" type="button">🚪 خروج</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMIN -->
+    <section id="adminView" class="view hidden">
+      <div class="admin-hdr glass">
+        <div>
+          <div class="admin-title">مركز <span class="grad-text">المطوّر</span></div>
+          <div class="admin-sub">تحكم كامل بالحسابات والعمليات</div>
+        </div>
+        <div class="row-actions">
+          <button id="adminRefresh" class="btn-ghost" type="button">↻ تحديث</button>
+          <button id="adminBack" class="btn-ghost" type="button">الاستوديو</button>
+        </div>
+      </div>
+      <div class="metrics">
+        <div class="metric glass"><strong id="mUsers">0</strong><span>حسابات</span></div>
+        <div class="metric glass"><strong id="mOps">0</strong><span>عمليات</span></div>
+        <div class="metric glass"><strong id="mToday">0</strong><span>اليوم</span></div>
+        <div class="metric glass"><strong id="mActive">0</strong><span>نشاط</span></div>
+      </div>
+      <input id="adminSearch" class="search" type="search" placeholder="ابحث بالاسم / البريد / ID...">
+      <div class="admin-cols">
+        <div class="sec glass">
+          <div class="sec-head2"><strong>الحسابات</strong><span id="usersLabel">0</span></div>
+          <div id="usersList" class="users-list"></div>
+        </div>
+        <div class="sec glass">
+          <div class="sec-head2"><strong>آخر العمليات</strong><span>الكل</span></div>
+          <div id="opsList" class="ops-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="ft">© RemoveBG Neon Studio · Made with 💜</footer>
+  </div>
+</main>
+
+<!-- MODAL -->
+<div id="modal" class="modal"><div class="modal-card"><div class="modal-head">
+  <strong id="modalTitle">إدارة الحساب</strong>
+  <button id="modalClose" class="modal-x" type="button">×</button>
+</div><div id="modalBody" class="modal-body"></div></div></div>
+
+<div id="toast" class="toast"></div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
